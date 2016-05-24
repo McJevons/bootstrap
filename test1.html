@@ -18,37 +18,53 @@
         <![endif]-->
     <style>
         #col1 {
-            background-color: red; 
+            background-color: red;
         }
+        
         #col2 {
             background-color: blue;
+            color: white;
         }
+        
         #col3 {
             background-color: green;
         }
+        
         #col4 {
             background-color: yellow;
         }
         
-        .row{
+        .row>div {
+            border: 1px solid black;
+        }
+        
+        /*方法C 每列的div的背景色要相同，并且不能有边框*/
+        /*.row>div {
+            background-color: green;
+        }*/
+        
+        /*方法B*/
+        /*.row{
             overflow: hidden; 
         }
-
         [class*="col-"]{
             margin-bottom: -99999px;
             padding-bottom: 99999px;
+        }*/
+        
+        /*方法A*/
+        /*.row {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            flex-wrap: wrap;
         }
-/*.row {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
-  flex-wrap: wrap;
-}
-.row > [class*='col-'] {
-  display: flex;
-  flex-direction: column;
-}*/
+        
+        .row > [class*='col-'] {
+            display: flex;
+            flex-direction: column;
+        }*/
     </style>
 </head>
 
@@ -85,26 +101,27 @@
         </nav>
         
         <div class="row">
-            
+
             <div class="col-xs-6 col-md-3" id="col1">
                 A
             </div>
-            
+
             <div class="col-xs-6 col-md-3" id="col2">
-                B<p>B</p>
+                B
+                <p>B</p>
             </div>
-            
+
             <div class="col-xs-6 col-md-3" id="col3">
                 C
             </div>
-            
+
             <div class="col-xs-6 col-md-3" id="col4">
                 D
             </div>
-            <!--设置row的背景色时可用-->
+            <!--方法C-->
             <!--<div class="clearfix"></div>-->
         </div>
-        
+
     </div>
 
     <!-- jQuery -->
