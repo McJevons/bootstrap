@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title Page</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrapValidator.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+            <form action="" method="POST" role="form" id="form-test">
+                <legend>Form title</legend>
+
+                <div class="form-group">
+                    <label for="">label</label>
+                    <input type="text" class="form-control" id="" name="text" placeholder="Input field">
+                </div>
+
+
+                <div class="form-group">
+                    <button id="btn-test" class="btn btn-primary">验证</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/bootstrapValidator.min.js"></script>
+    <script>
+        $(function () {
+            $("#form-test").bootstrapValidator({
+                live: 'disabled',
+                //submitButtons: '#btn-test',
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    text: {
+                        validators: {
+                            notEmpty: {//检测非空,radio也可用
+                                message: '文本框必须输入'
+                            },
+                            stringLength: {//检测长度
+                                min: 6,
+                                max: 30,
+                                message: '长度必须在6-30之间'
+                            }
+                        }
+                    }
+                }
+            });
+            $("#btn-test").click(function () {
+                $("#form-test").bootstrapValidator('validate');
+                if ($("#form-test").data('bootstrapValidator').isValid()) {
+                    alert("yes");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
